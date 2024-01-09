@@ -12,8 +12,6 @@ variables (K : Type*) (V : Type*) [is_R_or_C K] [inner_product_space K V]
 
 local notation `⟪`x`, `y`⟫` := @inner K V _ x y
 local notation `absR` := has_abs.abs
-#print notation
-
 set_option pp.coercions true
 set_option pp.notation true
 set_option pp.generalized_field_notation true
@@ -30,9 +28,7 @@ example (v : V) : double K V v = v + v :=
 begin
 intros,
 rw double,
-
 simp,
-
 have h₁ : 2 • v = v + v := calc
   2 • v = (1 + 1) • v : by triv
   ... = 1•v + 1•v : by rw add_smul
@@ -47,6 +43,7 @@ begin
   intros,
   rw switch,
   simp,
+  apply add_right_cancel
   -- rw [switch],
 end
 
@@ -61,7 +58,6 @@ end
 example (a b c : V) (h1 : a +b = a + c) : b= c:=
 begin
 intros, 
-rw add_left_cancel
 
 end
 
